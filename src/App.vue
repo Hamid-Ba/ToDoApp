@@ -1,47 +1,12 @@
 <template>
-  <header class="card">
-    <h1>لیست وظایف </h1>
-    
-    <button id="theme-switcher">
-      <img src="./assets/icon-sun.svg" alt="Change color theme" />
-    </button>
-  </header>
+  <AppHeader/>
   <main>
-    <div class="card add">
-      <div class="cb-container">
-        <button id="add-btn">+</button>
-      </div>
-      <div class="txt-container">
-        <label for="addt">افزودن </label>
-        <input type="text" class="txt-input" placeholder="افزودن وظیفه جدید..." spellcheck="false" autocomplete="off"
-          id="addt" dir="rtl" />
-      </div>
-    </div>
+    <AddTodo/>
     <ul class="todos">
 
-      <li class="card" draggable="true">
-        <div class="cb-container">
-          <input type="checkbox" class="cb-input" />
-          <span class="check"></span>
-        </div>
-        <p class="item">یادگیری جاوااسکریپت</p>
-        <button class="clear">
-          <img src="./assets/icon-cross.svg" alt="Clear it" />
-        </button>
-      </li>
-
-
-      
-      <li class="card" >
-        <div class="cb-container">
-          <input type="checkbox" class="cb-input" />
-          <span class="check"></span>
-        </div>
-        <p class="item">یادگیری Nodejs</p>
-        <button class="clear">
-          <img src="./assets/icon-cross.svg" alt="Clear it" />
-        </button>
-      </li>
+      <AppTodo/>
+      <AppTodo/>
+      <AppTodo/>      
       
     </ul>
     <div class="card stat">
@@ -56,16 +21,23 @@
       </div>
     </div>
   </main>
-  <footer>
-    <p> برای مرتب کردن وظایف میتوانید وظیفه موردنظر را بکشید و رها کنید - Drag And Drop</p>
-  </footer>
+  <AppFooter />
 </template>
 
 <script>
-
+import AppHeader from "./components/AppHeader.vue"
+import AppFooter from "./components/AppFooter.vue"
+import AppTodo from "./components/AppTodo.vue"
+import AddTodo from "./components/AddTodo.vue"
 export default {
   name: 'App',
   
+  components:{
+    AppHeader,
+    AppFooter,
+    AppTodo,
+    AddTodo
+  }
 }
 </script>
 
