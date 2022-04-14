@@ -3,11 +3,9 @@
   <main>
     <AddTodo/>
     <ul class="todos">
-
-      <AppTodo/>
-      <AppTodo/>
-      <AppTodo/>      
       
+      <AppTodo v-for="(todo , index) in todos" :key="index" :todo="todo"/>
+
     </ul>
     <div class="card stat">
       <p class="corner"><span id="items-left">0</span> مورد باقی مانده</p>
@@ -32,6 +30,16 @@ import AddTodo from "./components/AddTodo.vue"
 export default {
   name: 'App',
   
+  data() {
+    return {
+      todos :[
+        {title : 'test1' , isComplete : false},
+        {title : 'test2' , isComplete : true},
+        {title : 'test3' , isComplete : false},
+      ]
+    }
+  },
+
   components:{
     AppHeader,
     AppFooter,
@@ -42,12 +50,5 @@ export default {
 </script>
 
 <style>
-/* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-} */
+
 </style>
