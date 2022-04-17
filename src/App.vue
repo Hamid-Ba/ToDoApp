@@ -4,7 +4,7 @@
     <AddTodo @TaskAdded="TaskCreated"/>
     <ul class="todos">
       
-      <AppTodo v-for="todo in todos" :key="todo.id" :todo="todo"/>
+      <AppTodo v-for="todo in todos" :key="todo.id" :todo="todo" @TaskDeleted="DeleteTask"/>
 
     </ul>
     <div class="card stat">
@@ -41,6 +41,11 @@ export default {
       const taskId = Math.random().toString(15).slice(3);
       const newTask = {id : taskId ,title : title,isComplete : false};
       this.todos.push(newTask);
+    },
+    DeleteTask(id){
+      var newTodos = [...this.todos];
+      newTodos = newTodos.filter(t => t.id !== id);
+      this.todos = newTodos;
     }
   },
 

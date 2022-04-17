@@ -5,7 +5,7 @@
           <span class="check"></span>
         </div>
         <p class="item">{{todo.title}}</p>
-        <button class="clear">
+        <button class="clear" @click="deleteTask">
           <img src="../assets/icon-cross.svg" alt="Clear it" />
         </button>
       </li>
@@ -13,6 +13,14 @@
 
 <script>
 export default {
+
+  methods:{
+    deleteTask(){
+      if(confirm("Are U Sure U Want To Delete This Task?"))
+      this.$emit("TaskDeleted",this.todo.id)
+    }
+  },
+
   props:{
     todo : Object
   }
