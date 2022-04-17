@@ -1,10 +1,10 @@
 <template>
   <AppHeader/>
   <main>
-    <AddTodo/>
+    <AddTodo @TaskAdded="TaskCreated"/>
     <ul class="todos">
       
-      <AppTodo v-for="(todo , index) in todos" :key="index" :todo="todo"/>
+      <AppTodo v-for="todo in todos" :key="todo.id" :todo="todo"/>
 
     </ul>
     <div class="card stat">
@@ -32,11 +32,15 @@ export default {
   
   data() {
     return {
-      todos :[
-        {title : 'test1' , isComplete : false},
-        {title : 'test2' , isComplete : true},
-        {title : 'test3' , isComplete : false},
-      ]
+      todos :[]
+    }
+  },
+
+  methods:{
+    TaskCreated(title){
+      const taskId = Math.random().toString(15).slice(3);
+      const newTask = {id : taskId ,title : title,isComplete : false};
+      this.todos.push(newTask);
     }
   },
 

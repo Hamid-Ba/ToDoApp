@@ -1,11 +1,11 @@
 <template>
   <div class="card add">
       <div class="cb-container">
-        <button id="add-btn">+</button>
+        <button id="add-btn" @click="addToDo">+</button>
       </div>
       <div class="txt-container">
         <label for="addt">افزودن </label>
-        <input type="text" class="txt-input" placeholder="افزودن وظیفه جدید..." spellcheck="false" autocomplete="off"
+        <input v-model="title" type="text" class="txt-input" placeholder="افزودن وظیفه جدید..." spellcheck="false" autocomplete="off"
           id="addt" dir="rtl" />
       </div>
     </div>
@@ -13,7 +13,17 @@
 
 <script>
 export default {
-
+  data(){
+    return{
+      title : ""
+    }
+  },
+  methods : {
+    addToDo(){
+      this.$emit("TaskAdded",this.title);
+      this.title = "";
+    }
+  }
 }
 </script>
 
