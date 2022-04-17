@@ -5,7 +5,8 @@
       </div>
       <div class="txt-container">
         <label for="addt">افزودن </label>
-        <input v-model="title" type="text" class="txt-input" placeholder="افزودن وظیفه جدید..." spellcheck="false" autocomplete="off"
+        <input v-model="title" type="text" @keypress.enter="addToDo" class="txt-input" 
+        placeholder="افزودن وظیفه جدید..." spellcheck="false" autocomplete="off"
           id="addt" dir="rtl" />
       </div>
     </div>
@@ -20,6 +21,7 @@ export default {
   },
   methods : {
     addToDo(){
+      if(this.title.trim().length !== 0)
       this.$emit("TaskAdded",this.title);
       this.title = "";
     }
