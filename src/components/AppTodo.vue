@@ -1,7 +1,7 @@
 <template>
   <li class="card" draggable="true">
         <div class="cb-container">
-          <input type="checkbox" :checked="todo.isComplete" class="cb-input" />
+          <input type="checkbox" @click="confirmTask" :checked="todo.isComplete" class="cb-input" />
           <span class="check"></span>
         </div>
         <p class="item">{{todo.title}}</p>
@@ -18,6 +18,10 @@ export default {
     deleteTask(){
       if(confirm("Are U Sure U Want To Delete This Task?"))
       this.$emit("TaskDeleted",this.todo.id)
+    },
+
+    confirmTask(){
+      this.$emit("TaskConfirmed",this.todo.id,!this.todo.isComplete);
     }
   },
 
