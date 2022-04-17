@@ -15,7 +15,7 @@
         <button id="completed">تکمیل</button>
       </div>
       <div class="corner">
-        <button id="clear-completed">حذف تکمیل شده ها</button>
+        <button id="clear-completed" @click="RemoveCompleted">حذف تکمیل شده ها</button>
       </div>
     </div>
   </main>
@@ -54,6 +54,11 @@ export default {
       var newTodos = [...this.todos];
       var task = newTodos.find(t => t.id === id);
       task.isComplete = newStatus;
+    },
+
+    RemoveCompleted(){
+      if(confirm("Are U Sure U Want To Clear Completed ?"))
+      this.todos = this.todos.filter(t => !t.isComplete);
     }
 
   },
