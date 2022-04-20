@@ -50,12 +50,12 @@ export default {
 
     filterTaskByTabs(){
       switch(this.tabs){
-        case 'all':
-          return this.todos;
         case 'active':
           return this.todos.filter(t => !t.isComplete)
         case 'completed':
           return this.todos.filter(t => t.isComplete)
+        default :
+          return this.todos
       }
     }
   },
