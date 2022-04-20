@@ -4,7 +4,12 @@
     <AddTodo @TaskAdded="TaskCreated"/>
     <ul class="todos">
       
-      <AppTodo v-for="todo in todos" :key="todo.id" :todo="todo" @TaskDeleted="DeleteTask" @TaskConfirmed="ConfirmTask"/>
+      <AppTodo v-for="(todo,index) in todos" :key="todo.id" :todo="todo"
+       @TaskDeleted="DeleteTask"
+       @TaskConfirmed="ConfirmTask"
+       @dragover.prevent
+       @dragstart="FillDragIndex(index)"
+       @drop="DropItem(index)" />
 
     </ul>
     <div class="card stat">
@@ -32,7 +37,8 @@ export default {
   
   data() {
     return {
-      todos :[]
+      todos :[],
+      dragIndex : -1
     }
   },
 
@@ -65,8 +71,16 @@ export default {
     RemoveCompleted(){
       if(confirm("Are U Sure U Want To Clear Completed ?"))
          this.todos = this.todos.filter(t => !t.isComplete);
-    }
+    },
 
+    FillDragIndex(index){
+      this.dragIndex = index;
+    },
+
+    DropItem(index){
+      var dragedElement = this.todos.splice(this.dragIndex,1)[0];
+      this.todos.splice(index,0,dragedElement)
+    }
   },
 
   components:{
