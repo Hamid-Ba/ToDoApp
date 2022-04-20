@@ -8,7 +8,7 @@
 
     </ul>
     <div class="card stat">
-      <p class="corner"><span id="items-left">0</span> مورد باقی مانده</p>
+      <p class="corner"><span id="items-left">{{remainTask}}</span> مورد باقی مانده</p>
       <div class="filter">
         <button id="all" class="on">همه</button>
         <button id="active" >فعال</button>
@@ -36,6 +36,12 @@ export default {
     }
   },
 
+  computed:{
+    remainTask(){
+      return this.todos.filter(t => !t.isComplete).length
+    }
+  },
+
   methods:{
 
     TaskCreated(title){
@@ -58,7 +64,7 @@ export default {
 
     RemoveCompleted(){
       if(confirm("Are U Sure U Want To Clear Completed ?"))
-      this.todos = this.todos.filter(t => !t.isComplete);
+         this.todos = this.todos.filter(t => !t.isComplete);
     }
 
   },
