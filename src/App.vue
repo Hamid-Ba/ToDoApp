@@ -4,7 +4,7 @@
     <AddTodo @TaskAdded="TaskCreated"/>
     <ul class="todos">
       
-      <AppTodo v-for="(todo,index) in todos" :key="todo.id" :todo="todo"
+      <AppTodo v-for="(todo,index) in filterTaskByTabs" :key="todo.id" :todo="todo"
        @TaskDeleted="DeleteTask"
        @TaskConfirmed="ConfirmTask"
        @dragover.prevent
@@ -15,9 +15,9 @@
     <div class="card stat">
       <p class="corner"><span id="items-left">{{remainTask}}</span> مورد باقی مانده</p>
       <div class="filter">
-        <button id="all" class="on">همه</button>
-        <button id="active" >فعال</button>
-        <button id="completed">تکمیل</button>
+        <button id="all" :class="{'on' : tabs == 'all'}" @click="ChangeTab('all')" >همه</button>
+        <button id="active" :class="{'on' : tabs == 'active'}" @click="ChangeTab('active')">فعال</button>
+        <button id="completed" :class="{'on' : tabs == 'completed'}" @click="ChangeTab('completed')">تکمیل</button>
       </div>
       <div class="corner">
         <button id="clear-completed" @click="RemoveCompleted">حذف تکمیل شده ها</button>
@@ -38,13 +38,25 @@ export default {
   data() {
     return {
       todos :[],
-      dragIndex : -1
+      dragIndex : -1,
+      tabs : 'all'
     }
   },
 
   computed:{
     remainTask(){
       return this.todos.filter(t => !t.isComplete).length
+    },
+
+    filterTaskByTabs(){
+      switch(this.tabs){
+        case 'all':
+          return this.todos;
+        case 'active':
+          return this.todos.filter(t => !t.isComplete)
+        case 'completed':
+          return this.todos.filter(t => t.isComplete)
+      }
     }
   },
 
@@ -80,6 +92,10 @@ export default {
     DropItem(index){
       var dragedElement = this.todos.splice(this.dragIndex,1)[0];
       this.todos.splice(index,0,dragedElement)
+    },    
+
+    ChangeTab(tabValue){
+      this.tabs = tabValue;
     }
   },
 
