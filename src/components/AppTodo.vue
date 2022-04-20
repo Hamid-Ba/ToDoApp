@@ -4,7 +4,10 @@
           <input type="checkbox" @click="confirmTask" :checked="todo.isComplete" class="cb-input" />
           <span class="check"></span>
         </div>
-        <p class="item">{{todo.title}}</p>
+        <p class="item">
+         <del v-if="todo.isComplete">{{todo.title}}</del> 
+         <span v-else v-text="todo.title"></span>
+        </p>
         <button class="clear" @click="deleteTask">
           <img src="../assets/icon-cross.svg" alt="Clear it" />
         </button>
@@ -32,5 +35,5 @@ export default {
 </script>
 
 <style>
-
+  
 </style>
