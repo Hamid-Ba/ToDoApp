@@ -46,6 +46,19 @@ body.light {
 
 }
 
+.v-toast__item {
+  position: relative;
+}
+
+.v-toast__icon{
+  left : 0;
+  position: absolute;
+}
+
+.v-toast__text{
+  padding-left: 85px !important;
+}
+
 html {
   font-size: 62.5%;
   position: relative;

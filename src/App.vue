@@ -66,12 +66,19 @@ export default {
       const taskId = Math.random().toString(15).slice(3);
       const newTask = {id : taskId ,title : title,isComplete : false};
       this.todos.push(newTask);
+      this.$toast.success("عملیات با موفقیت انجام شد" , {
+        duration : 100000
+      })
     },
 
     DeleteTask(id){
       var newTodos = [...this.todos];
+      
+      var targetTask = newTodos.filter(t => t.id == id)[0];
       newTodos = newTodos.filter(t => t.id !== id);
       this.todos = newTodos;
+
+      this.$toast.error(targetTask.title + " با موفقیت حذف گردید")
     },
 
     ConfirmTask(id,newStatus){
