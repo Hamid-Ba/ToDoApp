@@ -7,9 +7,10 @@
         <Form>
          <label for="addt">افزودن </label>
          <Field name = "title" v-model="title" :rules = "titleRule" type="text" @keypress.enter="addToDo" class="txt-input" 
-           placeholder="افزودن وظیفه جدید..." spellcheck="false" autocomplete="off"
+           placeholder="افزودن وظیفه جدید..." spellcheck="false" 
+           :validateOnInput = 'true' autocomplete="off"
            id="addt" dir="rtl" />
-         <ErrorMessage name="title" style="color:red"/>
+         <ErrorMessage name="title"  style="color:red"/>
         </Form>
         
       </div>
