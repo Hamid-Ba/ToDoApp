@@ -66,9 +66,7 @@ export default {
       const taskId = Math.random().toString(15).slice(3);
       const newTask = {id : taskId ,title : title,isComplete : false};
       this.todos.push(newTask);
-      this.$toast.success("عملیات با موفقیت انجام شد" , {
-        duration : 100000
-      })
+      this.$toast.success("عملیات با موفقیت انجام شد")
     },
 
     DeleteTask(id){
