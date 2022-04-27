@@ -4,9 +4,9 @@
         <button id="add-btn" @click="addToDo">+</button>
       </div>
       <div class="txt-container">
-        <Form>
+        <Form :validation-schema = "schema">
          <label for="addt">افزودن </label>
-         <Field name = "title" v-model="title" :rules = "titleRule" type="text" @keypress.enter="addToDo" class="txt-input" 
+         <Field name = "title" v-model="title"  type="text" @keypress.enter="addToDo" class="txt-input" 
            placeholder="افزودن وظیفه جدید..." spellcheck="false" 
            :validateOnInput = 'true' autocomplete="off"
            id="addt" dir="rtl" />
@@ -29,9 +29,15 @@ export default {
     ErrorMessage
   },
   data(){
+    const schema = yup.object({
+      title : yup
+        .string()
+        .required("تسک خود را وارد نمایید"),
+    });
+
     return{
-      titleRule : yup.string().required("تسک خود را وارد نمایید"),
-      title : ""
+      title : "",
+      schema
     }
   },
   methods : {
